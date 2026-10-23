@@ -2,9 +2,10 @@
 # Adds the latest yonder release to the apt and rpm repositories and signs both.
 # Needs: gh-free curl, apt-ftparchive, createrepo_c, gpg with the signing key imported.
 set -euo pipefail
+exec 3>&1 1>&2 # stdout is only the version, for the workflow; all other output goes to stderr
 tag=$(curl -fsSL https://api.github.com/repos/dpologdvinity/yonder/releases/latest | sed -n 's/.*"tag_name": *"\(v[^"]*\)".*/\1/p')
 ver=${tag#v}
-if [ "$(cat VERSION 2>/dev/null)" = "$ver" ]; then echo unchanged; exit 0; fi
+if [ "$(cat VERSION 2>/dev/null)" = "$ver" ]; then echo unchanged >&3; exit 0; fi
 base="https://github.com/dpologdvinity/yonder/releases/download/$tag"
 sums=$(curl -fsSL "$base/checksums.txt")
 fetch() {
@@ -50,4 +51,4 @@ for a in x86_64 aarch64; do
 done
 
 echo "$ver" > VERSION
-echo "$ver"
+echo "$ver" >&3
