@@ -27,5 +27,23 @@ for a in x86_64 aarch64; do fetch "yonder-${ver}-1.${a}.rpm" rpm; done
 createrepo_c --quiet --update rpm
 gpg --batch --yes --detach-sign --armor -o rpm/repodata/repomd.xml.asc rpm/repodata/repomd.xml
 
+# pacman: per-arch repos with signed packages and database (releases from 0.4.1 ship .pkg.tar.zst)
+for a in x86_64 aarch64; do
+  pkg="yonder-${ver}-1-${a}.pkg.tar.zst"
+  echo "$sums" | grep -q " $pkg\$" || continue
+  mkdir -p "arch/$a"
+  fetch "$pkg" "arch/$a"
+  gpg --batch --yes --detach-sign -o "arch/$a/$pkg.sig" "arch/$a/$pkg"
+  # repo-add only exists on Arch, so run it in a throwaway Arch container as this user.
+  docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/arch/$a:/r" -w /r archlinux:latest \
+    repo-add -q -R yonder.db.tar.zst "$pkg"
+  # Pages does not serve symlinks; replace yonder.db -> yonder.db.tar.zst with copies.
+  for db in db files; do
+    cp --remove-destination "arch/$a/yonder.$db.tar.zst" "arch/$a/yonder.$db"
+    gpg --batch --yes --detach-sign -o "arch/$a/yonder.$db.tar.zst.sig" "arch/$a/yonder.$db.tar.zst"
+    cp "arch/$a/yonder.$db.tar.zst.sig" "arch/$a/yonder.$db.sig"
+  done
+done
+
 echo "$ver" > VERSION
 echo "$ver"

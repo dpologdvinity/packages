@@ -17,4 +17,13 @@ sudo curl -fsSLo /etc/yum.repos.d/yonder.repo https://dpologdvinity.github.io/pa
 sudo dnf install yonder
 ```
 
+## Arch Linux
+
+```sh
+curl -fsSL https://dpologdvinity.github.io/packages/yonder.asc | sudo pacman-key --add -
+sudo pacman-key --lsign-key 282804EB5779EA7EFFCF8308097AF7F74B2F93E5
+printf '\n[yonder]\nServer = https://dpologdvinity.github.io/packages/arch/$arch\n' | sudo tee -a /etc/pacman.conf
+sudo pacman -Sy yonder
+```
+
 Signing key fingerprint: `282804EB5779EA7EFFCF8308097AF7F74B2F93E5`
