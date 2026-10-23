@@ -13,7 +13,11 @@ fetch() {
 }
 mkdir -p apt rpm
 for a in amd64 arm64; do fetch "yonder_${ver}_${a}.deb" apt; done
-for a in x86_64 aarch64; do fetch "yonder-${ver}-1.${a}.rpm" rpm; done
+for a in x86_64 aarch64; do
+  fetch "yonder-${ver}-1.${a}.rpm" rpm
+  # Sign each package itself, so dnf can check it (gpgcheck=1) and not only the repository index.
+  rpmsign --define "_gpg_name $(gpg --list-secret-keys --with-colons | awk -F: '/^fpr/ {print $10; exit}')" --addsign "rpm/yonder-${ver}-1.${a}.rpm"
+done
 
 # apt: flat repository (deb [signed-by=...] URL ./)
 (cd apt
