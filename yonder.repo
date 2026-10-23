@@ -1,0 +1,7 @@
+[yonder]
+name=yonder
+baseurl=https://dpologdvinity.github.io/packages/rpm
+enabled=1
+gpgcheck=0
+repo_gpgcheck=1
+gpgkey=https://dpologdvinity.github.io/packages/yonder.asc
