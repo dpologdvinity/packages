@@ -21,12 +21,7 @@ for a in x86_64 aarch64; do
 done
 
 # apt: flat repository (deb [signed-by=...] URL ./)
-(cd apt
-  apt-ftparchive packages . > Packages
-  gzip -kf Packages
-  apt-ftparchive -o APT::FTPArchive::Release::Origin=yonder -o APT::FTPArchive::Release::Label=yonder release . > Release
-  gpg --batch --yes --clearsign -o InRelease Release
-  gpg --batch --yes -abs -o Release.gpg Release)
+./build-apt.sh
 
 # dnf: repodata with a signed repomd.xml (repo_gpgcheck=1)
 createrepo_c --quiet --update rpm
