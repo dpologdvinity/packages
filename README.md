@@ -1,6 +1,9 @@
-# yonder packages
+# Packages
 
-apt and dnf repository for [yonder](https://github.com/dpologdvinity/yonder). Rebuilt hourly from the latest release.
+Signed APT packages for [yonder](https://github.com/dpologdvinity/yonder) and
+[flaky](https://github.com/dpologdvinity/flaky), plus dnf and pacman packages for
+yonder. Rebuilt hourly from the latest releases. The existing yonder signing key
+and repository identity are preserved for compatibility.
 
 ## Debian / Ubuntu
 
@@ -9,6 +12,18 @@ sudo curl -fsSLo /usr/share/keyrings/yonder.gpg https://dpologdvinity.github.io/
 echo "deb [signed-by=/usr/share/keyrings/yonder.gpg] https://dpologdvinity.github.io/packages/apt ./" | sudo tee /etc/apt/sources.list.d/yonder.list
 sudo apt update && sudo apt install yonder
 ```
+
+With the repository configured, install Flaky on amd64 or arm64:
+
+```sh
+sudo apt update && sudo apt install flaky
+```
+
+Flaky imports verify release SHA-256 checksums and Debian metadata before signing
+the shared index. The `Update Flaky APT packages` workflow can also be dispatched
+manually. Publication is serialized with yonder updates so neither overwrites
+the other's index. Each publishing workflow explicitly requests a Pages build
+after committing so the public repository updates even with `GITHUB_TOKEN`.
 
 ## Fedora / RHEL
 

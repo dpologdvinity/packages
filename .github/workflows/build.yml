@@ -7,6 +7,11 @@ on:
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: package-repository
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -18,7 +23,9 @@ jobs:
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       - id: build
-        run: echo "ver=$(./build.sh)" >> "$GITHUB_OUTPUT"
+        run: |
+          version=$(./build.sh)
+          printf 'ver=%s\n' "$version" >> "$GITHUB_OUTPUT"
       - if: steps.build.outputs.ver != 'unchanged'
         run: |
           git config user.name "github-actions[bot]"
@@ -26,3 +33,8 @@ jobs:
           git add -A
           git commit -m "feat: add yonder ${{ steps.build.outputs.ver }}"
           git push
+      - name: Rebuild the public package repository
+        if: steps.build.outputs.ver != 'unchanged'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
