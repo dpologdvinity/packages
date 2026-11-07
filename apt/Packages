@@ -310,3 +310,33 @@ SHA512: 05890a441f6d234afb400bacec8ca8e73a4c98cc641cb74744002f436f0bed5f03a91421
 Homepage: https://github.com/dpologdvinity/yonder
 Description: your site, over yonder: share a localhost site or files with your phone via a QR code
 
+Package: yonder
+Architecture: amd64
+Version: 0.6.1
+Priority: optional
+Maintainer: Kaitlyn Bassford <dpologdvinity@users.noreply.github.com>
+Installed-Size: 9900
+Filename: ./yonder_0.6.1_amd64.deb
+Size: 4170086
+MD5sum: 24e7720cf6c58d9fc2bfda2772d447f3
+SHA1: 5b69359f8fb3954e4c157cdc2bcc0e2d6056c741
+SHA256: 3019b1a8ed2bdbde6f992f922c7c5bdff84519d4ea3a8e35949ec29a35735314
+SHA512: 49ace1ff0f95c1f397c0bb72850469c36f85b6d43389e8bc2d7120988119262d1585774e3a17b4bc561fd7b57e6cab0257058a6892a2f32b703e316d73929602
+Homepage: https://github.com/dpologdvinity/yonder
+Description: your site, over yonder: share a localhost site or files with your phone via a QR code
+
+Package: yonder
+Architecture: arm64
+Version: 0.6.1
+Priority: optional
+Maintainer: Kaitlyn Bassford <dpologdvinity@users.noreply.github.com>
+Installed-Size: 9216
+Filename: ./yonder_0.6.1_arm64.deb
+Size: 3760318
+MD5sum: b770701be5cd431f0503820a1fa4a676
+SHA1: 075847bad54da528d5573796f485c53c05c63a15
+SHA256: f2dab76ccd2539d7b9a2ef13eaee2de2fa6a7000e10979753b984dc12ac76a51
+SHA512: 58ef9d3fb0f8c4e993e7c18b96e896a95ed6a76e28bcdfcfd94e0f7a5a5d147b831486378da0bd68ecb5e0128cbead14cbe34f728421da461d1eba27e093c23d
+Homepage: https://github.com/dpologdvinity/yonder
+Description: your site, over yonder: share a localhost site or files with your phone via a QR code
+
