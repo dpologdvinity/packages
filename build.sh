@@ -41,8 +41,10 @@ for a in x86_64 aarch64; do
   for db in db files; do
     cp --remove-destination "arch/$a/yonder.$db.tar.zst" "arch/$a/yonder.$db"
     gpg --batch --yes --detach-sign -o "arch/$a/yonder.$db.tar.zst.sig" "arch/$a/yonder.$db.tar.zst"
-    cp "arch/$a/yonder.$db.tar.zst.sig" "arch/$a/yonder.$db.sig"
+    cp --remove-destination "arch/$a/yonder.$db.tar.zst.sig" "arch/$a/yonder.$db.sig"
   done
+  # repo-add keeps .old backups of the previous database; the repository does not need them.
+  rm -f "arch/$a"/yonder.*.old "arch/$a"/yonder.*.old.sig
 done
 
 echo "$ver" > VERSION
