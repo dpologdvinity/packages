@@ -100,6 +100,40 @@ SHA512: c2e4f7d180f66174ce2ced0f4743e688c7e3b305d9ef0427cfa94d1806baa060b21cbed3
 Homepage: https://github.com/dpologdvinity/flaky
 Description: Offline CLI to rank intermittent test failures and bisect their introduction
 
+Package: flaky
+Architecture: amd64
+Version: 0.1.4
+Priority: optional
+Section: utils
+Maintainer: Kaitlyn Bassford <kaitlynbassford@gmail.com>
+Installed-Size: 2365
+Suggests: git
+Filename: ./flaky_0.1.4_amd64.deb
+Size: 1077120
+MD5sum: 8ca7f47547407ca3cf8b8c6b2e716d10
+SHA1: d49994e0a491e0f054e84171400d3dd2df5f04e9
+SHA256: 319e1e252fc3b084598d41ec3905dbf767d8b1b6039be60867cd48e034136dd6
+SHA512: 687b28d9c88e3c001c3d2dad007ab0799ade7a2cd71541457a1da81f9f097c0f53afdd0838a3a1718ad9f6fb856a16d6a53bb527e4cc6b99a508e353132b4e73
+Homepage: https://github.com/dpologdvinity/flaky
+Description: Offline CLI to rank intermittent test failures and bisect their introduction
+
+Package: flaky
+Architecture: arm64
+Version: 0.1.4
+Priority: optional
+Section: utils
+Maintainer: Kaitlyn Bassford <kaitlynbassford@gmail.com>
+Installed-Size: 2369
+Suggests: git
+Filename: ./flaky_0.1.4_arm64.deb
+Size: 1001724
+MD5sum: eb347f9fe73190e46921a9b667917954
+SHA1: 5993a3c6e8504420a77e1f16d7fc14a725f985e9
+SHA256: 907a148f618869001c98dd5bb3318f8eb37f24ed902367afba05fd82cb538a73
+SHA512: da283614e8b927b4263a4c359983c3d23a90d105972931b4d08e3b2710245377f6830d78126c7648f27a60b53762c93d15d77a92581fc7b5d519a6dab0b7f800
+Homepage: https://github.com/dpologdvinity/flaky
+Description: Offline CLI to rank intermittent test failures and bisect their introduction
+
 Package: yonder
 Architecture: amd64
 Version: 0.4.0
